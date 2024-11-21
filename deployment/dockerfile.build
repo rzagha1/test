@@ -1,6 +1,8 @@
 ARG CONTAINER_REGISTRY=harbor.delivery.iqgeo.cloud/releases/
 # START SECTION Aliases for Injector images
-FROM ${CONTAINER_REGISTRY}comms:3.2 AS comms
+FROM ${CONTAINER_REGISTRY}survey:6.0 AS survey
+FROM ${CONTAINER_REGISTRY}groups:1.0 AS groups
+FROM ${CONTAINER_REGISTRY}mywapp_common:6.0 AS mywapp_common
 # END SECTION
 
 # Create container for building the project
@@ -8,7 +10,9 @@ FROM ${CONTAINER_REGISTRY}platform-build:7.2
 
 # START SECTION Copy the modules - if you edit these lines manually note that your change will get lost if you run the IQGeo Project Update tool
 COPY --link custom ${MODULES}/custom
-COPY --link --from=comms / ${MODULES}/
+COPY --link --from=survey / ${MODULES}/
+COPY --link --from=groups / ${MODULES}/
+COPY --link --from=mywapp_common / ${MODULES}/
 # END SECTION
 
 # START CUSTOM SECTION
