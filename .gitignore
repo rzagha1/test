@@ -12,9 +12,9 @@ node_modules
 /tsconfig.core.json
 
 # START SECTION Product modules
-/survey
 /groups
 /mywapp_common
+/survey
 /dev_tools
 # END SECTION
 

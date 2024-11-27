@@ -6,9 +6,9 @@
 ARG CONTAINER_REGISTRY=harbor.delivery.iqgeo.cloud/releases/
 
 # START SECTION Aliases for Injector images - beware this section is updated by the IQGeo project configuration tool
-FROM ${CONTAINER_REGISTRY}survey:6.0 AS survey
 FROM ${CONTAINER_REGISTRY}groups:1.0 AS groups
 FROM ${CONTAINER_REGISTRY}mywapp_common:6.0 AS mywapp_common
+FROM ${CONTAINER_REGISTRY}survey:6.0 AS survey
 # END SECTION
 
 
@@ -25,9 +25,9 @@ RUN mkdir -p ${MYWORLD_DATA_HOME}/tests
 RUN pip install cryptojwt
 
 # START SECTION Copy the modules - beware this section is updated by the IQGeo project configuration tool
-COPY --link --from=survey / ${MODULES}/
 COPY --link --from=groups / ${MODULES}/
 COPY --link --from=mywapp_common / ${MODULES}/
+COPY --link --from=survey / ${MODULES}/
 # END SECTION
 
 
